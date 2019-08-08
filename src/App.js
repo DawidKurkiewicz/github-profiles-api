@@ -1,57 +1,57 @@
 import React from 'react';
-import './App.css'; // Import css modules stylesheet as styles
+import './App.css';
 const testData = [
-  {name: "Dan Abramov", avatar_url: "https://avatars0.githubusercontent.com/u/810438?v=4", company: "Facebook"},
-  {name: "Sophie Alpert", avatar_url: "https://avatars2.githubusercontent.com/u/6820?v=4", company: "Humu"},
-  {name: "Sebastian Markbåge", avatar_url: "https://avatars2.githubusercontent.com/u/63648?v=4", company: "Facebook"},
+  { name: "Dan Abramov", avatar_url: "https://avatars0.githubusercontent.com/u/810438?v=4", company: "Facebook" },
+  { name: "Sophie Alpert", avatar_url: "https://avatars2.githubusercontent.com/u/6820?v=4", company: "Humu" },
+  { name: "Sebastian Markbåge", avatar_url: "https://avatars2.githubusercontent.com/u/63648?v=4", company: "Facebook" },
 ];
 
 const CardList = (props) => (
-<div>
-  {props.profiles.map((profile,index) => <Card {...profile} key={index} />)}
-</div>
+  <div>
+    {props.profiles.map((profile, index) => <Card {...profile} key={index} />)}
+  </div>
 );
 
 class Card extends React.Component {
-render() {
-  const profile = this.props;
-  return (
-    <div className="github-profile">
-      <img src={profile.avatar_url} alt="github-img" />
-      <div className="info">
-        <div className="name">{profile.name}</div>
-        <div className="company">{profile.company}</div>
+  render() {
+    const profile = this.props;
+    return (
+      <div className="github-profile">
+        <img src={profile.avatar_url} alt="github-img" />
+        <div className="info">
+          <div className="name">{profile.name}</div>
+          <div className="company">{profile.company}</div>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 }
 
 class Form extends React.Component {
-render() {
-  return (
-    <form action="">
-      <input type="text" placeholder="GitHub username"/>
-      <button>Add card</button>
-    </form>
-  );
-}
+  render() {
+    return (
+      <form action="">
+        <input type="text" placeholder="GitHub username" />
+        <button>Add card</button>
+      </form>
+    );
+  }
 }
 
 class App extends React.Component {
-state = {
-  profiles: testData,
-};
+  state = {
+    profiles: testData,
+  };
 
-render() {
-  return (
-    <div>
-      <div className="header">{this.props.title}</div>
-      <Form />
-      <CardList profiles={this.state.profiles} />
-    </div>
-  );
-}	
+  render() {
+    return (
+      <div>
+        <div className="header">{this.props.title}</div>
+        <Form />
+        <CardList profiles={this.state.profiles} />
+      </div>
+    );
+  }
 }
 
 

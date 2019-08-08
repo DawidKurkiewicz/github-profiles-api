@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css'; // Import css modules stylesheet as styles
 const testData = [
   {name: "Dan Abramov", avatar_url: "https://avatars0.githubusercontent.com/u/810438?v=4", company: "@facebook"},
@@ -8,7 +8,7 @@ const testData = [
 
 const CardList = (props) => (
 <div>
-  {props.profiles.map(profile => <Card {...profile}/>)}
+  {props.profiles.map((profile,index) => <Card {...profile} key={index} />)}
 </div>
 );
 
@@ -17,7 +17,7 @@ render() {
   const profile = this.props;
   return (
     <div className="github-profile">
-      <img src={profile.avatar_url} />
+      <img src={profile.avatar_url} alt="github-img" />
       <div className="info">
         <div className="name">{profile.name}</div>
         <div className="company">{profile.company}</div>

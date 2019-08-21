@@ -1,5 +1,4 @@
 import React from 'react';
-import "./Card.scss"
 class Card extends React.Component {
     render() {
       const profile = this.props;

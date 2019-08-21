@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import "./Form.scss"
 class Form extends React.Component {
     state = { userName: "" }
     handleSubmit = async (event) => {
@@ -18,7 +18,7 @@ class Form extends React.Component {
             value={this.state.userName}
             onChange={event => this.setState({ userName: event.target.value })}
           />
-          <button>Add card</button>
+          <button className="btn draw-border">Add card</button>
         </form>
       );
     }

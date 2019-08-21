@@ -1,54 +1,16 @@
 import React from 'react';
 import './App.css';
-import axios from 'axios';
+import Card from "./Card"
+import Form from "./Form"
+
+
 const CardList = (props) => (
   <div>
-    {props.profiles.map((profile, index) => <Card {...profile} key={profile.id} />)}
+    {props.profiles.map((profile) => <Card deleteProfile={props.deleteProfile} {...profile} key={profile.id} />)}
   </div>
 );
 
-class Card extends React.Component {
-deleteProfile = ()=>{
-  console.log(this.props.id)
-  this.setState({})
-}
-  render() {
-    const profile = this.props;
-    return (
-      <div className="github-profile">
-        <img  src={profile.avatar_url} alt="github-img" />
-        <div className="info">
-          <div className="name">{profile.name}</div>
-          <div className="company">{profile.company}</div>
-          <button onClick={this.deleteProfile}>delete</button>
-        </div>
-      </div>
-    );
-  }
-}
 
-class Form extends React.Component {
-  state = { userName: "" }
-  handleSubmit = async (event) => {
-    event.preventDefault();
-    const resp = await axios.get(`https://api.github.com/users/${this.state.userName}`)
-    this.props.onSubmit(resp.data)
-    this.setState({ userName: "" })
-  };
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          placeholder="GitHub username"
-          value={this.state.userName}
-          onChange={event => this.setState({ userName: event.target.value })}
-        />
-        <button>Add card</button>
-      </form>
-    );
-  }
-}
 
 class App extends React.Component {
   state = {
@@ -58,13 +20,18 @@ class App extends React.Component {
     this.setState(prevState => ({
       profiles: [...prevState.profiles, profileData]
     }))
-  };
+  }
+  deleteProfile=(id)=>{
+   const filteredProfiles = this.state.profiles
+    const filter = filteredProfiles.filter((profile)=>{ return profile.id !== id})
+    this.setState({profiles:filter})
+   }
   render() {
     return (
       <div>
         <div className="header">{this.props.title}</div>
         <Form onSubmit={this.addNewProfile} />
-        <CardList profiles={this.state.profiles} />
+        <CardList profiles={this.state.profiles} deleteProfile={this.deleteProfile}/>
       </div>
     );
   }

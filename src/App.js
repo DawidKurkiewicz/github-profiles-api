@@ -10,8 +10,6 @@ const CardList = (props) => (
   </div>
 );
 
-
-
 class App extends React.Component {
   state = {
     profiles: [],

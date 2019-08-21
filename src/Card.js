@@ -1,5 +1,5 @@
 import React from 'react';
-
+import "./Card.scss"
 class Card extends React.Component {
     render() {
       const profile = this.props;
@@ -9,7 +9,7 @@ class Card extends React.Component {
           <div className="info">
             <div className="name">{profile.name}</div>
             <div className="company">{profile.company}</div>
-            <button onClick={()=>this.props.deleteProfile(profile.id)}>delete</button>
+            <button className="btn draw-border" onClick={()=>this.props.deleteProfile(profile.id)}>delete</button>
           </div>
         </div>
       );

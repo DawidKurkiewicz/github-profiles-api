@@ -3,11 +3,13 @@
 	margin: 1rem;
 }
 img {
-  width: 75px;
+  width: 120px;
+  height: 100%;
 }
 .info {
   display: inline-block;
   margin-left: 12px;
+  transform: translate(0px, -35px);
 }
 .name {
   font-size: 1.25rem;

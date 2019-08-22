@@ -5,9 +5,14 @@ class Form extends React.Component {
     state = { userName: "" }
     handleSubmit = async (event) => {
       event.preventDefault();
-      const resp = await axios.get(`https://api.github.com/users/${this.state.userName}`)
+      try {
+      const resp = await axios
+      .get(`https://api.github.com/users/${this.state.userName}`)
       this.props.onSubmit(resp.data)
       this.setState({ userName: "" })
+      }catch (error) {
+        alert("You pass wrong value to the input, please check your github profile name");
+      }
     };
     render() {
       return (
